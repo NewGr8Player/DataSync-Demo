@@ -1,0 +1,29 @@
+canal:
+    client:
+        instances:
+            example:
+                port: 11111
+                batchSize: 1000
+                zookeeperAddress:
+                clusterEnabled: false
+spring:
+    datasource:
+        name: test
+        url: jdbc:mysql://192.168.187.209:3306/testa?useUnicode=true&autoReconnect=true&useSSL=true
+        username: root
+        password: sxkj0818web
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
