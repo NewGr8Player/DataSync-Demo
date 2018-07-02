@@ -27,12 +27,13 @@ public class EntInfoServiceImpl implements EntInfoService {
 	@Override
 	public void save(EntInfo entInfo) {
 		if (null != entInfo && null != entInfo.getId()) {
+			//TODO Spring-Data-JPA 无法忽略null值进行Insert或者Update
 			Optional<EntInfo> obj = entInfoDao.findById(entInfo.getId());
 			EntInfo entity = new EntInfo();
 			if (obj.isPresent()) {
-				UpdateTool.copyNullProperties(obj.get(), entity);
+				UpdateTool.copyNonNullProperties(obj.get(), entity);
 			}
-			UpdateTool.copyNullProperties(entInfo, entity);
+			UpdateTool.copyNonNullProperties(entInfo, entity);
 			this.entInfoDao.save(entity);
 		} else {
 			logger.info("传入无效对象,不进行持久化操作!");

@@ -9,9 +9,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * There is no royal road to learning.
- * Description:提交实体对象中的null赋值
- * Created by 贤领·周 on 2018年04月10日 15:26
+ * 提交实体对象中的null赋值
+ *
+ * @author 贤领·周 on 2018年04月10日 15:26
  */
 public class UpdateTool {
 	/**
@@ -20,15 +20,15 @@ public class UpdateTool {
 	 * @param source 用id从数据库中查出来的数据源
 	 * @param target 提交的实体，目标源
 	 */
-	public static void copyNullProperties(Object source, Object target) {
-		BeanUtils.copyProperties(source, target, getNoNullProperties(target));
+	public static void copyNonNullProperties(Object source, Object target) {
+		BeanUtils.copyProperties(source, target, getNonNullProperties(target));
 	}
 
 	/**
 	 * @param target 目标源数据
 	 * @return 将目标源中不为空的字段取出
 	 */
-	private static String[] getNoNullProperties(Object target) {
+	private static String[] getNonNullProperties(Object target) {
 		BeanWrapper srcBean = new BeanWrapperImpl(target);
 		PropertyDescriptor[] pds = srcBean.getPropertyDescriptors();
 		Set<String> noEmptyName = new HashSet<>();
