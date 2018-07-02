@@ -1,15 +1,17 @@
 package com.xavier.bean;
 
-import com.alibaba.otter.canal.protocol.CanalEntry;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
+/**
+ * ent_info表对应的JavaBean
+ *
+ * @author NewGr8Player
+ */
 @Entity
 @Table(name = "ent_info")
 public class EntInfo implements Serializable {
@@ -79,25 +81,6 @@ public class EntInfo implements Serializable {
 	private String remarks;
 	@Column
 	private String delFlag;
-
-	public EntInfo() {
-	}
-
-	public EntInfo(List<CanalEntry.Column> list) {
-		list.forEach(
-				(e) -> {
-					switch (e.getName()) {
-						case "id":
-							this.id = e.getValue();
-							break;
-						case "entNo":
-							this.entNo = e.getValue();
-							break;
-						case "":
-					}
-				}
-		);
-	}
 
 	public String getId() {
 		return id;

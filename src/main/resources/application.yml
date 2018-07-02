@@ -27,3 +27,7 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+logging:
+    level:
+        com.xavier: INFO
+        org.hibernate: DEBUG

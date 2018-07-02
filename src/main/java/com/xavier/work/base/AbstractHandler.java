@@ -1,7 +1,14 @@
 package com.xavier.work.base;
 
-import java.util.List;
 import com.alibaba.otter.canal.protocol.CanalEntry.Column;
+
+import java.util.List;
+
+/**
+ * 通用数据库事件处理类
+ *
+ * @author NewGr8Player
+ */
 public abstract class AbstractHandler {
 	/**
 	 * 插入处理
