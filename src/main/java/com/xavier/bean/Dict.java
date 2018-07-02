@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -14,7 +15,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "sys_dict")
-public class Dict {
+public class Dict implements Serializable {
 	@Id
 	@Column
 	private String id;

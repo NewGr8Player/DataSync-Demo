@@ -1,5 +1,6 @@
 package com.xavier.bean;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 /**
  * ent_info表对应的JavaBean
+ * (动态插入或更新,拼接sql不使用为null的字段)
  *
  * @author NewGr8Player
  */
@@ -337,4 +339,5 @@ public class EntInfo implements Serializable {
 	public void setDelFlag(String delFlag) {
 		this.delFlag = delFlag;
 	}
+
 }

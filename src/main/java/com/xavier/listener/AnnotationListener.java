@@ -24,19 +24,19 @@ public class AnnotationListener {
 	@Autowired
 	private AddressInfoHandler addressInfoHandler;
 
-	@ListenPoint(destination = "example", schema = "testa", table = {"d_ent_info"})
+	@ListenPoint(destination = "example", schema = "testa", table = "d_ent_info")
 	public void entInfoListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
-		listenerTask(entInfoHandler,eventType,rowData);
+		listenerTask(entInfoHandler, eventType, rowData);
 	}
 
-	@ListenPoint(destination = "example", schema = "testa", table = {"d_address_info"})
+	@ListenPoint(destination = "example", schema = "testa", table = "d_address_info")
 	public void addressInfoListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
-		listenerTask(mapHandler,eventType,rowData);
+		listenerTask(addressInfoHandler, eventType, rowData);
 	}
 
-	@ListenPoint(destination = "example", schema = "testa", table = {"sys_map"})
+	@ListenPoint(destination = "example", schema = "testa", table = "sys_map")
 	public void mapListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
-		listenerTask(addressInfoHandler,eventType,rowData);
+		listenerTask(mapHandler, eventType, rowData);
 	}
 
 	/**

@@ -30,6 +30,7 @@ public class EntInfoCvtServiceImpl implements EntInfoCvtService {
 
 	public static final String ENT_TYPE = "entType";/* 企业类型字典项Type */
 	public static final String ENT_STATE = "entState";/* 企业状态字典项Type */
+	public static final String ENT_INFO_SOURCE_TABLE = "d_ent_info";/* 数据来源表名 */
 
 	@Autowired
 	private DictService dictService;
@@ -71,7 +72,7 @@ public class EntInfoCvtServiceImpl implements EntInfoCvtService {
 				case "idCard":
 					entInfo.setIdcard(e.getValue());
 					break;
-				case "superVersion":
+				case "supervision":
 					entInfo.setSupervision(e.getValue());
 					break;
 				case "entState":
@@ -121,20 +122,22 @@ public class EntInfoCvtServiceImpl implements EntInfoCvtService {
 		boolean flag = true;
 		for (int i = 0; i < length; i++) {
 			if (flag && "tblName".equals(list.get(i).getName())
-					&& "sys_map".equals(list.get(i).getValue())) {
+					&& ENT_INFO_SOURCE_TABLE.equals(list.get(i).getValue())) {
 				flag = false;
 				i = 0;
 			}
-			switch (list.get(i).getName()) {
-				case "tblId":
-					entInfo.setId(list.get(i).getValue());
-					break;
-				case "pointX":
-					entInfo.setLng(list.get(i).getValue());
-					break;
-				case "pointY":
-					entInfo.setLat(list.get(i).getValue());
-					break;
+			if(!flag){
+				switch (list.get(i).getName()) {
+					case "tblId":
+						entInfo.setId(list.get(i).getValue());
+						break;
+					case "pointX":
+						entInfo.setLng(list.get(i).getValue());
+						break;
+					case "pointY":
+						entInfo.setLat(list.get(i).getValue());
+						break;
+				}
 			}
 		}
 		return entInfo;
@@ -147,27 +150,30 @@ public class EntInfoCvtServiceImpl implements EntInfoCvtService {
 		boolean flag = true;
 		for (int i = 0; i < length; i++) {
 			if (flag && "tblName".equals(list.get(i).getName())
-					&& "d_address_info".equals(list.get(i).getValue())) {
+					&& ENT_INFO_SOURCE_TABLE.equals(list.get(i).getValue())) {
 				flag = false;
 				i = 0;
 			}
-			switch (list.get(i).getName()) {
-				case "tblId":
-					entInfo.setId(list.get(i).getValue());
-					break;
-				case "province":
-					entInfo.setProvince(list.get(i).getValue());
-					break;
-				case "city":
-					entInfo.setCity(list.get(i).getValue());
-					break;
-				case "country":
-					entInfo.setCounty(list.get(i).getValue());
-					break;
-				case "detail":
-					entInfo.setDetail(list.get(i).getValue());
-					break;
+			if(!flag){
+				switch (list.get(i).getName()) {
+					case "tblId":
+						entInfo.setId(list.get(i).getValue());
+						break;
+					case "province":
+						entInfo.setProvince(list.get(i).getValue());
+						break;
+					case "city":
+						entInfo.setCity(list.get(i).getValue());
+						break;
+					case "country":
+						entInfo.setCounty(list.get(i).getValue());
+						break;
+					case "detail":
+						entInfo.setDetail(list.get(i).getValue());
+						break;
+				}
 			}
+
 		}
 		return entInfo;
 	}
