@@ -1,7 +1,8 @@
 package com.xavier.work;
 
 import com.alibaba.otter.canal.protocol.CanalEntry;
-import com.xavier.service.EntInfoService;
+import com.xavier.service.StcEntByAreaService;
+import com.xavier.service.StcEntByDictService;
 import com.xavier.work.base.AbstractHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,28 +10,31 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * 地址信息处理
+ * tblDic表内内容处理
  *
  * @author NewGr8Player
  */
 @Component
-public class AddressInfoHandler extends AbstractHandler {
+public class TblDicLHandler extends AbstractHandler {
 
+	//TODO 目前只完成了一侧业务处理
 	@Autowired
-	private EntInfoService entInfoService;
+	private StcEntByAreaService stcEntByAreaService;
+	@Autowired
+	private StcEntByDictService stcEntByDictService;
 
 	@Override
 	public void onInsert(List<CanalEntry.Column> afterList) {
-		this.entInfoService.save(entInfoService.addressInfoCollector(afterList));
+		stcEntByDictService.save(stcEntByDictService.stcEntByDictCollector(afterList));
 	}
 
 	@Override
 	public void onUpdate(List<CanalEntry.Column> beforeList, List<CanalEntry.Column> afterList) {
-		this.entInfoService.save(entInfoService.addressInfoCollector(afterList));
+		stcEntByDictService.save(stcEntByDictService.stcEntByDictCollector(afterList));
 	}
 
 	@Override
 	public void onDelete(List<CanalEntry.Column> beforeList) {
-		//TODO 从表被删除是否处理?
+		//TODO 表被删除是否处理?
 	}
 }

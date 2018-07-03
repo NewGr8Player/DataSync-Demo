@@ -1,7 +1,6 @@
 package com.xavier.work;
 
 import com.alibaba.otter.canal.protocol.CanalEntry.Column;
-import com.xavier.service.EntInfoCvtService;
 import com.xavier.service.EntInfoService;
 import com.xavier.work.base.AbstractHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +18,15 @@ public class EntInfoHandler extends AbstractHandler {
 
 	@Autowired
 	private EntInfoService entInfoService;
-	@Autowired
-	private EntInfoCvtService entInfoCvtService;
 
 	@Override
 	public void onInsert(List<Column> afterList) {
-		this.entInfoService.save(entInfoCvtService.entInfoCollector(afterList));
+		this.entInfoService.save(entInfoService.entInfoCollector(afterList));
 	}
 
 	@Override
 	public void onUpdate(List<Column> beforeList, List<Column> afterList) {
-		this.entInfoService.save(entInfoCvtService.entInfoCollector(afterList));
+		this.entInfoService.save(entInfoService.entInfoCollector(afterList));
 	}
 
 	@Override

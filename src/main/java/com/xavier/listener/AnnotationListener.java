@@ -6,6 +6,7 @@ import com.xavier.starter.canal.annotation.ListenPoint;
 import com.xavier.work.AddressInfoHandler;
 import com.xavier.work.EntInfoHandler;
 import com.xavier.work.MapHandler;
+import com.xavier.work.TblDicLHandler;
 import com.xavier.work.base.AbstractHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,6 +24,8 @@ public class AnnotationListener {
 	private MapHandler mapHandler;
 	@Autowired
 	private AddressInfoHandler addressInfoHandler;
+	@Autowired
+	private TblDicLHandler tblDicLHandler;
 
 	@ListenPoint(destination = "example", schema = "testa", table = "d_ent_info")
 	public void entInfoListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
@@ -37,6 +40,11 @@ public class AnnotationListener {
 	@ListenPoint(destination = "example", schema = "testa", table = "sys_map")
 	public void mapListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
 		listenerTask(mapHandler, eventType, rowData);
+	}
+
+	@ListenPoint(destination = "example", schema = "testa", table = "d_tbl_dic")
+	public void tblDicListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
+		listenerTask(tblDicLHandler, eventType, rowData);
 	}
 
 	/**
