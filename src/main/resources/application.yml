@@ -29,5 +29,5 @@ spring:
         maxOpenPreparedStatements: 20
 logging:
     level:
-        com.xavier: INFO
-        org.hibernate: DEBUG
+        com.xavier.service: DEBUG
+        org.hibernate: INFO

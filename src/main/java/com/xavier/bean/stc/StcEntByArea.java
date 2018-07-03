@@ -1,6 +1,6 @@
 package com.xavier.bean.stc;
 
-import com.xavier.bean.multi.StcEntByAreaMultiKeys;
+import com.xavier.bean.keys.StcEntByAreaMultiKeys;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -43,5 +43,9 @@ public class StcEntByArea {
 
 	public void setEnt_num(Integer ent_num) {
 		this.ent_num = ent_num;
+	}
+
+	public void incEnt_num(Integer inc) {
+		this.ent_num += inc;
 	}
 }

@@ -1,6 +1,6 @@
 package com.xavier.bean.stc;
 
-import com.xavier.bean.multi.StcEntByDictMultiKeys;
+import com.xavier.bean.keys.StcEntByDictMultiKeys;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;

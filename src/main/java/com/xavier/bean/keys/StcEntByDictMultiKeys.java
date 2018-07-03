@@ -1,11 +1,11 @@
-package com.xavier.bean.multi;
+package com.xavier.bean.keys;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * EntByDic复合主键
+ * StcEntByDict复合主键
  *
  * @author NewGr8Player
  */

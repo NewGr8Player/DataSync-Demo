@@ -3,9 +3,9 @@ package com.xavier.service.impl;
 import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.xavier.bean.Dict;
 import com.xavier.bean.EntInfo;
-import com.xavier.bean.multi.StcEntByDictMultiKeys;
+import com.xavier.bean.keys.StcEntByDictMultiKeys;
 import com.xavier.bean.stc.StcEntByDict;
-import com.xavier.dao.EntByDictDao;
+import com.xavier.dao.StcEntByDictDao;
 import com.xavier.service.DictService;
 import com.xavier.service.EntInfoService;
 import com.xavier.service.StcEntByDictService;
@@ -28,7 +28,7 @@ public class StcEntByDictServiceImpl implements StcEntByDictService {
 	private Logger logger = LoggerFactory.getLogger(StcEntByDictService.class);
 
 	@Autowired
-	private EntByDictDao entByDictDao;
+	private StcEntByDictDao stcEntByDictDao;
 	@Autowired
 	private EntInfoService entInfoService;
 	@Autowired
@@ -37,16 +37,16 @@ public class StcEntByDictServiceImpl implements StcEntByDictService {
 	@Override
 	public void save(StcEntByDict stcEntByDict) {
 		if (null != stcEntByDict && null != stcEntByDict.getStcEntByDictMultiKeys()) {
-			Optional<StcEntByDict> obj = entByDictDao.findById(stcEntByDict.getStcEntByDictMultiKeys());
+			Optional<StcEntByDict> obj = this.stcEntByDictDao.findById(stcEntByDict.getStcEntByDictMultiKeys());
 			if (obj.isPresent()) {
 				stcEntByDict = obj.get();
 				stcEntByDict.incEnt_num(1);/* +1 */
 			} else {
 				stcEntByDict.setEnt_num(1);/* =1 */
 			}
-			this.entByDictDao.save(stcEntByDict);
+			this.stcEntByDictDao.save(stcEntByDict);
 		} else {
-			logger.info("传入无效对象,不进行持久化操作!");
+			logger.debug("传入无效对象,不进行持久化操作!");
 		}
 	}
 

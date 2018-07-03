@@ -17,7 +17,6 @@ import java.util.List;
 @Component
 public class TblDicLHandler extends AbstractHandler {
 
-	//TODO 目前只完成了一侧业务处理
 	@Autowired
 	private StcEntByAreaService stcEntByAreaService;
 	@Autowired
@@ -25,12 +24,14 @@ public class TblDicLHandler extends AbstractHandler {
 
 	@Override
 	public void onInsert(List<CanalEntry.Column> afterList) {
-		stcEntByDictService.save(stcEntByDictService.stcEntByDictCollector(afterList));
+		this.stcEntByDictService.save(stcEntByDictService.stcEntByDictCollector(afterList));
+		this.stcEntByAreaService.save(stcEntByAreaService.stcEntByAreaCollector(afterList));
 	}
 
 	@Override
 	public void onUpdate(List<CanalEntry.Column> beforeList, List<CanalEntry.Column> afterList) {
-		stcEntByDictService.save(stcEntByDictService.stcEntByDictCollector(afterList));
+		this.stcEntByDictService.save(stcEntByDictService.stcEntByDictCollector(afterList));
+		this.stcEntByAreaService.save(stcEntByAreaService.stcEntByAreaCollector(afterList));
 	}
 
 	@Override

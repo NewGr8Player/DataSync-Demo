@@ -10,5 +10,5 @@ public class ConstVars {
 	public static final String ENT_TYPE = "entType";/* 企业类型字典项Type */
 	public static final String ENT_STATE = "entState";/* 企业状态字典项Type */
 	public static final String ENT_INFO_SOURCE_TABLE = "d_ent_info";/* 数据来源表名 */
-	public static final String FARM_TYPE = "farmType";/* 养殖畜种 */
+	public static final String ENT_REPATTERNS = "d_ent";/* 企业表前缀 */
 }

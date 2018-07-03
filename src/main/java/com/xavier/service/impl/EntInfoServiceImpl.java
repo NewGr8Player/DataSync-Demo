@@ -38,7 +38,7 @@ public class EntInfoServiceImpl implements EntInfoService {
 	public void save(EntInfo entInfo) {
 		if (null != entInfo && null != entInfo.getId()) {
 			//TODO Spring-Data-JPA 无法忽略null值进行Insert或者Update
-			Optional<EntInfo> obj = entInfoDao.findById(entInfo.getId());
+			Optional<EntInfo> obj = this.entInfoDao.findById(entInfo.getId());
 			EntInfo entity = new EntInfo();
 			UpdateTool.copyNonNullProperties(entInfo, entity);
 			if (obj.isPresent()) {
@@ -46,7 +46,7 @@ public class EntInfoServiceImpl implements EntInfoService {
 			}
 			this.entInfoDao.save(entity);
 		} else {
-			logger.info("传入无效对象,不进行持久化操作!");
+			logger.debug("传入无效对象,不进行持久化操作!");
 		}
 
 	}

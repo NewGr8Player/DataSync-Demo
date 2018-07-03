@@ -1,25 +1,21 @@
-package com.xavier.bean.multi;
+package com.xavier.bean.keys;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * EntByArea复合主键
+ * StcEntByArea复合主键
  *
  * @author NewGr8Player
  */
 @Embeddable
 public class StcEntByAreaMultiKeys implements Serializable {
 
-	private String city;
-
-	private String county;
-
-	private String ent_type;
-
 	private String province;
-
+	private String city;
+	private String county;
+	private String ent_type;
 
 	public StcEntByAreaMultiKeys() {
 	}
@@ -29,6 +25,38 @@ public class StcEntByAreaMultiKeys implements Serializable {
 		this.county = county;
 		this.ent_type = ent_type;
 		this.province = province;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCounty() {
+		return county;
+	}
+
+	public void setCounty(String county) {
+		this.county = county;
+	}
+
+	public String getEnt_type() {
+		return ent_type;
+	}
+
+	public void setEnt_type(String ent_type) {
+		this.ent_type = ent_type;
 	}
 
 	@Override
