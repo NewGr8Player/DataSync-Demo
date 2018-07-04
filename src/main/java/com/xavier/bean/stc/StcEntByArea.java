@@ -13,20 +13,20 @@ import javax.persistence.Table;
  * @author NewGr8Player
  */
 @Entity
-@Table(name = "stc_ent_by_dict")
+@Table(name = "stc_ent_by_area")
 public class StcEntByArea {
 
 	@EmbeddedId
 	private StcEntByAreaMultiKeys stcEntByAreaMultiKeys;
-	@Column
-	private Integer ent_num;
+	@Column(name = "ent_num")
+	private Integer entNum;
 
 	public StcEntByArea() {
 	}
 
-	public StcEntByArea(StcEntByAreaMultiKeys stcEntByAreaMultiKeys, Integer ent_num) {
+	public StcEntByArea(StcEntByAreaMultiKeys stcEntByAreaMultiKeys, Integer entNum) {
 		this.stcEntByAreaMultiKeys = stcEntByAreaMultiKeys;
-		this.ent_num = ent_num;
+		this.entNum = entNum;
 	}
 
 	public StcEntByAreaMultiKeys getStcEntByAreaMultiKeys() {
@@ -37,15 +37,15 @@ public class StcEntByArea {
 		this.stcEntByAreaMultiKeys = stcEntByAreaMultiKeys;
 	}
 
-	public Integer getEnt_num() {
-		return ent_num;
+	public Integer getEntNum() {
+		return entNum;
 	}
 
-	public void setEnt_num(Integer ent_num) {
-		this.ent_num = ent_num;
+	public void setEntNum(Integer entNum) {
+		this.entNum = entNum;
 	}
 
 	public void incEnt_num(Integer inc) {
-		this.ent_num += inc;
+		this.entNum += inc;
 	}
 }

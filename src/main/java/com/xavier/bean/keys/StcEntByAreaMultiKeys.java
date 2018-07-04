@@ -1,5 +1,6 @@
 package com.xavier.bean.keys;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,18 +13,22 @@ import java.util.Objects;
 @Embeddable
 public class StcEntByAreaMultiKeys implements Serializable {
 
+	@Column(name = "province")
 	private String province;
+	@Column(name = "city")
 	private String city;
+	@Column(name = "county")
 	private String county;
-	private String ent_type;
+	@Column(name = "ent_type")
+	private String entType;
 
 	public StcEntByAreaMultiKeys() {
 	}
 
-	public StcEntByAreaMultiKeys(String city, String county, String ent_type, String province) {
+	public StcEntByAreaMultiKeys(String city, String county, String entType, String province) {
 		this.city = city;
 		this.county = county;
-		this.ent_type = ent_type;
+		this.entType = entType;
 		this.province = province;
 	}
 
@@ -51,12 +56,12 @@ public class StcEntByAreaMultiKeys implements Serializable {
 		this.county = county;
 	}
 
-	public String getEnt_type() {
-		return ent_type;
+	public String getEntType() {
+		return entType;
 	}
 
-	public void setEnt_type(String ent_type) {
-		this.ent_type = ent_type;
+	public void setEntType(String entType) {
+		this.entType = entType;
 	}
 
 	@Override
@@ -66,12 +71,12 @@ public class StcEntByAreaMultiKeys implements Serializable {
 		StcEntByAreaMultiKeys that = (StcEntByAreaMultiKeys) o;
 		return Objects.equals(city, that.city) &&
 				Objects.equals(county, that.county) &&
-				Objects.equals(ent_type, that.ent_type) &&
+				Objects.equals(entType, that.entType) &&
 				Objects.equals(province, that.province);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(city, county, ent_type, province);
+		return Objects.hash(city, county, entType, province);
 	}
 }

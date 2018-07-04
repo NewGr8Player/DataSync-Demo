@@ -19,18 +19,18 @@ public class StcEntByDict implements Serializable {
 
 	@EmbeddedId
 	private StcEntByDictMultiKeys stcEntByDictMultiKeys;
-	@Column
-	private String dict_label;
-	@Column
-	private Integer ent_num;
+	@Column(name = "dict_label")
+	private String dictLabel;
+	@Column(name = "ent_num")
+	private Integer entNum;
 
 	public StcEntByDict() {
 	}
 
-	public StcEntByDict(StcEntByDictMultiKeys stcEntByDictMultiKeys, String dict_label, Integer ent_num) {
+	public StcEntByDict(StcEntByDictMultiKeys stcEntByDictMultiKeys, String dictLabel, Integer entNum) {
 		this.stcEntByDictMultiKeys = stcEntByDictMultiKeys;
-		this.dict_label = dict_label;
-		this.ent_num = ent_num;
+		this.dictLabel = dictLabel;
+		this.entNum = entNum;
 	}
 
 	public StcEntByDictMultiKeys getStcEntByDictMultiKeys() {
@@ -41,23 +41,23 @@ public class StcEntByDict implements Serializable {
 		this.stcEntByDictMultiKeys = stcEntByDictMultiKeys;
 	}
 
-	public String getDict_label() {
-		return dict_label;
+	public String getDictLabel() {
+		return dictLabel;
 	}
 
-	public void setDict_label(String dict_label) {
-		this.dict_label = dict_label;
+	public void setDictLabel(String dictLabel) {
+		this.dictLabel = dictLabel;
 	}
 
-	public Integer getEnt_num() {
-		return ent_num;
+	public Integer getEntNum() {
+		return entNum;
 	}
 
-	public void setEnt_num(Integer ent_num) {
-		this.ent_num = ent_num;
+	public void setEntNum(Integer entNum) {
+		this.entNum = entNum;
 	}
 
 	public void incEnt_num(Integer inc) {
-		this.ent_num += inc;
+		this.entNum += inc;
 	}
 }

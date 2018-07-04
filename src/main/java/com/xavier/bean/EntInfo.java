@@ -10,7 +10,6 @@ import java.util.Date;
 
 /**
  * ent_info表对应的JavaBean
- * (动态插入或更新,拼接sql不使用为null的字段)
  *
  * @author NewGr8Player
  */
@@ -19,69 +18,69 @@ import java.util.Date;
 public class EntInfo implements Serializable {
 
 	@Id
-	@Column
+	@Column(name = "id")
 	private String id;
-	@Column
+	@Column(name = "ent_no")
 	private String entNo;
-	@Column
+	@Column(name = "card_no")
 	private String cardNo;
-	@Column
+	@Column(name = "ent_name")
 	private String entName;
-	@Column
+	@Column(name = "ent_type_code")
 	private String entTypeCode;
-	@Column
+	@Column(name = "ent_type_name")
 	private String entTypeName;
-	@Column
+	@Column(name = "legal_person")
 	private String legalPerson;
-	@Column
+	@Column(name = "telephone")
 	private String telephone;
-	@Column
+	@Column(name = "other_person")
 	private String otherPerson;
-	@Column
+	@Column(name = "other_telephone")
 	private String otherTelephone;
-	@Column
+	@Column(name = "idcard")
 	private String idcard;
-	@Column
+	@Column(name = "supervision")
 	private String supervision;
-	@Column
+	@Column(name = "state_type_code")
 	private String stateTypeCode;
-	@Column
+	@Column(name = "state_type_name")
 	private String stateTypeName;
-	@Column
+	@Column(name = "promote_status")
 	private Integer promoteStatus;
-	@Column
+	@Column(name = "research_date")
 	private Date researchDate;
-	@Column
+	@Column(name = "promote_date")
 	private Date promoteDate;
-	@Column
+	@Column(name = "build_date")
 	private Date buildDate;
-	@Column
+	@Column(name = "province")
 	private String province;
-	@Column
+	@Column(name = "city")
 	private String city;
-	@Column
+	@Column(name = "county")
 	private String county;
-	@Column
+	@Column(name = "detail")
 	private String detail;
-	@Column
+	@Column(name = "lng")
 	private String lng;
-	@Column
+	@Column(name = "lat")
 	private String lat;
-	@Column
+	@Column(name = "sort")
 	private Integer sort;
-	@Column
+	@Column(name = "status")
 	private Integer status;
-	@Column
+	@Column(name = "create_by")
 	private String createBy;
-	@Column
+	@Column(name = "create_date")
 	private Date createDate;
-	@Column
+	@Column(name = "update_by")
 	private String updateBy;
-	@Column
+	@Column(name = "update_date")
 	private Date updateDate;
-	@Column
+	@Column(name = "remarks")
 	private String remarks;
-	@Column
+	@Column(name = "del_flag")
 	private String delFlag;
 
 	public String getId() {

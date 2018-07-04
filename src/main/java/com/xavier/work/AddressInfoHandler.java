@@ -21,12 +21,12 @@ public class AddressInfoHandler extends AbstractHandler {
 
 	@Override
 	public void onInsert(List<CanalEntry.Column> afterList) {
-		this.entInfoService.save(entInfoService.addressInfoCollector(afterList));
+		this.entInfoService.save(this.entInfoService.addressInfoCollector(afterList));
 	}
 
 	@Override
 	public void onUpdate(List<CanalEntry.Column> beforeList, List<CanalEntry.Column> afterList) {
-		this.entInfoService.save(entInfoService.addressInfoCollector(afterList));
+		this.entInfoService.save(this.entInfoService.addressInfoCollector(afterList));
 	}
 
 	@Override

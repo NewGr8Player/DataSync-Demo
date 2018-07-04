@@ -21,12 +21,12 @@ public class EntInfoHandler extends AbstractHandler {
 
 	@Override
 	public void onInsert(List<Column> afterList) {
-		this.entInfoService.save(entInfoService.entInfoCollector(afterList));
+		this.entInfoService.save(this.entInfoService.entInfoCollector(afterList));
 	}
 
 	@Override
 	public void onUpdate(List<Column> beforeList, List<Column> afterList) {
-		this.entInfoService.save(entInfoService.entInfoCollector(afterList));
+		this.entInfoService.save(this.entInfoService.entInfoCollector(afterList));
 	}
 
 	@Override

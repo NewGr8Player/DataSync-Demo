@@ -25,7 +25,7 @@ public interface EntInfoService {
 	 *
 	 * @param id
 	 */
-	Optional<EntInfo> findById(String id);
+	Optional<EntInfo> searchById(String id);
 
 	/**
 	 * d_ent_info日志转换成bean

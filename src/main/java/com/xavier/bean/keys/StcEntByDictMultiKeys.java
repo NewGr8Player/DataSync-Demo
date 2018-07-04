@@ -1,5 +1,6 @@
 package com.xavier.bean.keys;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,24 +13,30 @@ import java.util.Objects;
 @Embeddable
 public class StcEntByDictMultiKeys implements Serializable {
 
+	@Column(name = "province")
 	private String province;
+	@Column(name = "city")
 	private String city;
+	@Column(name = "county")
 	private String county;
-	private String ent_type;
-	private String dict_type;
-	private String dict_value;
+	@Column(name = "ent_type")
+	private String entType;
+	@Column(name = "dict_type")
+	private String dictType;
+	@Column(name = "dict_value")
+	private String dictValue;
 
 	public StcEntByDictMultiKeys() {
 
 	}
 
-	public StcEntByDictMultiKeys(String province, String city, String county, String ent_type, String dict_type, String dict_value) {
+	public StcEntByDictMultiKeys(String province, String city, String county, String entType, String dictType, String dictValue) {
 		this.province = province;
 		this.city = city;
 		this.county = county;
-		this.ent_type = ent_type;
-		this.dict_type = dict_type;
-		this.dict_value = dict_value;
+		this.entType = entType;
+		this.dictType = dictType;
+		this.dictValue = dictValue;
 	}
 
 	public String getProvince() {
@@ -56,28 +63,28 @@ public class StcEntByDictMultiKeys implements Serializable {
 		this.county = county;
 	}
 
-	public String getEnt_type() {
-		return ent_type;
+	public String getEntType() {
+		return entType;
 	}
 
-	public void setEnt_type(String ent_type) {
-		this.ent_type = ent_type;
+	public void setEntType(String entType) {
+		this.entType = entType;
 	}
 
-	public String getDict_type() {
-		return dict_type;
+	public String getDictType() {
+		return dictType;
 	}
 
-	public void setDict_type(String dict_type) {
-		this.dict_type = dict_type;
+	public void setDictType(String dictType) {
+		this.dictType = dictType;
 	}
 
-	public String getDict_value() {
-		return dict_value;
+	public String getDictValue() {
+		return dictValue;
 	}
 
-	public void setDict_value(String dict_value) {
-		this.dict_value = dict_value;
+	public void setDictValue(String dictValue) {
+		this.dictValue = dictValue;
 	}
 
 	@Override
@@ -88,13 +95,13 @@ public class StcEntByDictMultiKeys implements Serializable {
 		return Objects.equals(province, that.province) &&
 				Objects.equals(city, that.city) &&
 				Objects.equals(county, that.county) &&
-				Objects.equals(ent_type, that.ent_type) &&
-				Objects.equals(dict_type, that.dict_type) &&
-				Objects.equals(dict_value, that.dict_value);
+				Objects.equals(entType, that.entType) &&
+				Objects.equals(dictType, that.dictType) &&
+				Objects.equals(dictValue, that.dictValue);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(province, city, county, ent_type, dict_type, dict_value);
+		return Objects.hash(province, city, county, entType, dictType, dictValue);
 	}
 }

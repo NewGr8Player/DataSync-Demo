@@ -4,6 +4,7 @@ import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.xavier.bean.EntInfo;
 import com.xavier.bean.keys.StcEntByAreaMultiKeys;
 import com.xavier.bean.stc.StcEntByArea;
+import com.xavier.common.ConstVars;
 import com.xavier.dao.StcEntByAreaDao;
 import com.xavier.service.EntInfoService;
 import com.xavier.service.StcEntByAreaService;
@@ -38,7 +39,7 @@ public class StcEntByAreaServiceImpl implements StcEntByAreaService {
 				stcEntByArea = obj.get();
 				stcEntByArea.incEnt_num(1);/* +1 */
 			} else {
-				stcEntByArea.setEnt_num(1);/* =1 */
+				stcEntByArea.setEntNum(1);/* =1 */
 			}
 			this.stcEntByAreaDao.save(stcEntByArea);
 		} else {
@@ -54,20 +55,20 @@ public class StcEntByAreaServiceImpl implements StcEntByAreaService {
 		boolean flag = true;
 		for (int i = 0; i < length; i++) {
 			if (flag && "tblName".equals(list.get(i).getName())
-					&& list.get(i).getValue().contains("d_ent")) {
+					&& list.get(i).getValue().contains(ConstVars.ENT_REPATTERNS)) {
 				flag = false;
 				i = 0;
 			}
 			if (!flag) {
 				switch (list.get(i).getName()) {
 					case "tblId":
-						Optional<EntInfo> entInfo = this.entInfoService.findById(list.get(i).getValue());
+						Optional<EntInfo> entInfo = this.entInfoService.searchById(list.get(i).getValue());
 						if (entInfo.isPresent()) {
 							EntInfo entity = entInfo.get();
 							multiKeys.setProvince(entity.getProvince());
 							multiKeys.setCity(entity.getCity());
 							multiKeys.setCounty(entity.getCounty());
-							multiKeys.setEnt_type(entity.getEntTypeCode());
+							multiKeys.setEntType(entity.getEntTypeCode());
 						}
 						break;
 				}

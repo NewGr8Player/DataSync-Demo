@@ -52,7 +52,7 @@ public class EntInfoServiceImpl implements EntInfoService {
 	}
 
 	@Override
-	public Optional<EntInfo> findById(String id) {
+	public Optional<EntInfo> searchById(String id) {
 		return this.entInfoDao.findById(id);
 	}
 

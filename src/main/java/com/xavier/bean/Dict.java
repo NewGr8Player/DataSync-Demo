@@ -17,32 +17,32 @@ import java.util.Date;
 @Table(name = "sys_dict")
 public class Dict implements Serializable {
 	@Id
-	@Column
+	@Column(name = "id")
 	private String id;
-	@Column
+	@Column(name = "value")
 	private String value;
-	@Column
+	@Column(name = "label")
 	private String label;
-	@Column
+	@Column(name = "type")
 	private String type;
-	@Column
+	@Column(name = "description")
 	private String description;
-	@Column
+	@Column(name = "sort")
 	private BigDecimal sort;
-	@Column
-	private String parent_id;
-	@Column
-	private String create_by;
-	@Column
-	private Date create_date;
-	@Column
-	private String update_by;
-	@Column
-	private Date update_date;
-	@Column
+	@Column(name = "parent_id")
+	private String parentId;
+	@Column(name = "create_by")
+	private String createBy;
+	@Column(name = "create_date")
+	private Date createDate;
+	@Column(name = "update_by")
+	private String updateBy;
+	@Column(name = "update_date")
+	private Date updateDate;
+	@Column(name = "remarks")
 	private String remarks;
-	@Column
-	private String del_flag;
+	@Column(name = "del_flag")
+	private String delFlag;
 
 	public String getId() {
 		return id;
@@ -92,44 +92,44 @@ public class Dict implements Serializable {
 		this.sort = sort;
 	}
 
-	public String getParent_id() {
-		return parent_id;
+	public String getParentId() {
+		return parentId;
 	}
 
-	public void setParent_id(String parent_id) {
-		this.parent_id = parent_id;
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 
-	public String getCreate_by() {
-		return create_by;
+	public String getCreateBy() {
+		return createBy;
 	}
 
-	public void setCreate_by(String create_by) {
-		this.create_by = create_by;
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
 	}
 
-	public Date getCreate_date() {
-		return create_date;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
-	public String getUpdate_by() {
-		return update_by;
+	public String getUpdateBy() {
+		return updateBy;
 	}
 
-	public void setUpdate_by(String update_by) {
-		this.update_by = update_by;
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
 	}
 
-	public Date getUpdate_date() {
-		return update_date;
+	public Date getUpdateDate() {
+		return updateDate;
 	}
 
-	public void setUpdate_date(Date update_date) {
-		this.update_date = update_date;
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public String getRemarks() {
@@ -140,11 +140,11 @@ public class Dict implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public String getDel_flag() {
-		return del_flag;
+	public String getDelFlag() {
+		return delFlag;
 	}
 
-	public void setDel_flag(String del_flag) {
-		this.del_flag = del_flag;
+	public void setDelFlag(String delFlag) {
+		this.delFlag = delFlag;
 	}
 }

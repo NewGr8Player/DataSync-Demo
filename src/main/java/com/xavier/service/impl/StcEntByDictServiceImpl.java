@@ -5,6 +5,7 @@ import com.xavier.bean.Dict;
 import com.xavier.bean.EntInfo;
 import com.xavier.bean.keys.StcEntByDictMultiKeys;
 import com.xavier.bean.stc.StcEntByDict;
+import com.xavier.common.ConstVars;
 import com.xavier.dao.StcEntByDictDao;
 import com.xavier.service.DictService;
 import com.xavier.service.EntInfoService;
@@ -42,7 +43,7 @@ public class StcEntByDictServiceImpl implements StcEntByDictService {
 				stcEntByDict = obj.get();
 				stcEntByDict.incEnt_num(1);/* +1 */
 			} else {
-				stcEntByDict.setEnt_num(1);/* =1 */
+				stcEntByDict.setEntNum(1);/* =1 */
 			}
 			this.stcEntByDictDao.save(stcEntByDict);
 		} else {
@@ -58,38 +59,38 @@ public class StcEntByDictServiceImpl implements StcEntByDictService {
 		boolean flag = true;
 		for (int i = 0; i < length; i++) {
 			if (flag && "tblName".equals(list.get(i).getName())
-					&& list.get(i).getValue().contains("d_ent")) {
+					&& list.get(i).getValue().contains(ConstVars.ENT_REPATTERNS)) {
 				flag = false;
 				i = 0;
 			}
 			if (!flag) {
 				switch (list.get(i).getName()) {
 					case "tblId":
-						Optional<EntInfo> entInfo = this.entInfoService.findById(list.get(i).getValue());
+						Optional<EntInfo> entInfo = this.entInfoService.searchById(list.get(i).getValue());
 						if (entInfo.isPresent()) {
 							EntInfo entity = entInfo.get();
 							multiKeys.setProvince(entity.getProvince());
 							multiKeys.setCity(entity.getCity());
 							multiKeys.setCounty(entity.getCounty());
-							multiKeys.setEnt_type(entity.getEntTypeCode());
+							multiKeys.setEntType(entity.getEntTypeCode());
 						}
 						break;
 					case "dicTypeId":
-						multiKeys.setDict_type(list.get(i).getValue());
+						multiKeys.setDictType(list.get(i).getValue());
 						break;
 					case "dicInfoCode":
-						multiKeys.setDict_value(list.get(i).getValue());
+						multiKeys.setDictValue(list.get(i).getValue());
 						break;
 					case "dicTypeName":
-						stcEntByDict.setDict_label(list.get(i).getValue());
+						stcEntByDict.setDictLabel(list.get(i).getValue());
 						break;
 				}
 			}
 		}
-		String type = multiKeys.getDict_type();
-		String value = multiKeys.getDict_value();
+		String type = multiKeys.getDictType();
+		String value = multiKeys.getDictValue();
 		Dict dict = this.dictService.searchByValueWithType(type, value);
-		stcEntByDict.setDict_label(dict.getLabel());
+		stcEntByDict.setDictLabel(dict.getLabel());
 		stcEntByDict.setStcEntByDictMultiKeys(multiKeys);
 		return stcEntByDict;
 	}
