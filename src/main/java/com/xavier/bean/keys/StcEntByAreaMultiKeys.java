@@ -1,5 +1,10 @@
 package com.xavier.bean.keys;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -10,6 +15,10 @@ import java.util.Objects;
  *
  * @author NewGr8Player
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Embeddable
 public class StcEntByAreaMultiKeys implements Serializable {
 
@@ -22,47 +31,6 @@ public class StcEntByAreaMultiKeys implements Serializable {
 	@Column(name = "ent_type")
 	private String entType;
 
-	public StcEntByAreaMultiKeys() {
-	}
-
-	public StcEntByAreaMultiKeys(String city, String county, String entType, String province) {
-		this.city = city;
-		this.county = county;
-		this.entType = entType;
-		this.province = province;
-	}
-
-	public String getProvince() {
-		return province;
-	}
-
-	public void setProvince(String province) {
-		this.province = province;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getCounty() {
-		return county;
-	}
-
-	public void setCounty(String county) {
-		this.county = county;
-	}
-
-	public String getEntType() {
-		return entType;
-	}
-
-	public void setEntType(String entType) {
-		this.entType = entType;
-	}
 
 	@Override
 	public boolean equals(Object o) {

@@ -1,5 +1,10 @@
 package com.xavier.bean.keys;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -10,6 +15,10 @@ import java.util.Objects;
  *
  * @author NewGr8Player
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Embeddable
 public class StcEntByTraceMultiKeys implements Serializable {
 
@@ -25,66 +34,6 @@ public class StcEntByTraceMultiKeys implements Serializable {
 	private Integer promoteStatus;
 	@Column(name = "butcher_type")
 	private String butcherType;
-
-	public StcEntByTraceMultiKeys() {
-	}
-
-	public StcEntByTraceMultiKeys(String province, String city, String county, String entGrade, Integer promoteStatus, String butcherType) {
-		this.province = province;
-		this.city = city;
-		this.county = county;
-		this.entGrade = entGrade;
-		this.promoteStatus = promoteStatus;
-		this.butcherType = butcherType;
-	}
-
-	public String getProvince() {
-		return province;
-	}
-
-	public void setProvince(String province) {
-		this.province = province;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getCounty() {
-		return county;
-	}
-
-	public void setCounty(String county) {
-		this.county = county;
-	}
-
-	public String getEntGrade() {
-		return entGrade;
-	}
-
-	public void setEntGrade(String entGrade) {
-		this.entGrade = entGrade;
-	}
-
-	public Integer getPromoteStatus() {
-		return promoteStatus;
-	}
-
-	public void setPromoteStatus(Integer promoteStatus) {
-		this.promoteStatus = promoteStatus;
-	}
-
-	public String getButcherType() {
-		return butcherType;
-	}
-
-	public void setButcherType(String butcherType) {
-		this.butcherType = butcherType;
-	}
 
 	@Override
 	public boolean equals(Object o) {

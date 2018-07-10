@@ -52,9 +52,9 @@ public class StcEntByTraceServiceImpl implements StcEntByTraceService {
 	}
 
 	@Override
-	public StcEntByTrace StcEntByTraceCollector(List<CanalEntry.Column> list) {
+	public StcEntByTrace stcEntByTraceCollector(List<CanalEntry.Column> list) {
 		StcEntByTrace stcEntByArea = new StcEntByTrace();
-		StcEntByTraceMultiKeys multiKeys = new StcEntByTraceMultiKeys();
+		StcEntByTraceMultiKeys stcEntByTraceMultiKeys = new StcEntByTraceMultiKeys();
 		int length = list.size();
 		boolean flag = true;
 		for (int i = 0; i < length; i++) {
@@ -66,25 +66,25 @@ public class StcEntByTraceServiceImpl implements StcEntByTraceService {
 			if (!flag) {
 				switch (list.get(i).getName()) {
 					case "tblId":
-						Optional<EntInfo> entInfo = this.entInfoService.searchById(list.get(i).getValue());
-						Optional<EntButcher> entButcher = this.entButcherService.findById(list.get(i).getValue());
-						if (entInfo.isPresent() && entButcher.isPresent()) {
-							EntInfo entInfoEntity = entInfo.get();
-							multiKeys.setProvince(entInfoEntity.getProvince());
-							multiKeys.setCity(entInfoEntity.getCity());
-							multiKeys.setCounty(entInfoEntity.getCounty());
-							multiKeys.setPromoteStatus(entInfoEntity.getPromoteStatus());
-							EntButcher entButcherEntity = entButcher.get();
-							multiKeys.setEntGrade(entButcherEntity.getGrade());
+						Optional<EntInfo> entInfoOptional = this.entInfoService.searchById(list.get(i).getValue());
+						Optional<EntButcher> entButcherOptional = this.entButcherService.findById(list.get(i).getValue());
+						if (entInfoOptional.isPresent() && entButcherOptional.isPresent()) {
+							EntInfo entInfo = entInfoOptional.get();
+							stcEntByTraceMultiKeys.setProvince(entInfo.getProvince());
+							stcEntByTraceMultiKeys.setCity(entInfo.getCity());
+							stcEntByTraceMultiKeys.setCounty(entInfo.getCounty());
+							stcEntByTraceMultiKeys.setPromoteStatus(entInfo.getPromoteStatus());
+							EntButcher entButcher = entButcherOptional.get();
+							stcEntByTraceMultiKeys.setEntGrade(entButcher.getGrade());
 						}
 						break;
 					case "dicInfoCode":
-						multiKeys.setButcherType(list.get(i).getValue());
+						stcEntByTraceMultiKeys.setButcherType(list.get(i).getValue());
 						break;
 				}
 			}
 		}
-		stcEntByArea.setStcEntByTraceMultiKeys(multiKeys);
+		stcEntByArea.setStcEntByTraceMultiKeys(stcEntByTraceMultiKeys);
 		return stcEntByArea;
 	}
 }

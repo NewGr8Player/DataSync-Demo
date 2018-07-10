@@ -47,6 +47,16 @@ public class AnnotationListener {
 		listenerTask(tblDicLHandler, eventType, rowData);
 	}
 
+	@ListenPoint(destination = "example", schema = "testa", table = "d_register_info")
+	public void registerInfoListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
+		listenerTask(tblDicLHandler, eventType, rowData);
+	}
+
+	@ListenPoint(destination = "example", schema = "testa", table = "d_outstock")
+	public void outstockListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
+		listenerTask(tblDicLHandler, eventType, rowData);
+	}
+
 	/**
 	 * 公用处理方法
 	 *

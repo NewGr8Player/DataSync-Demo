@@ -1,6 +1,10 @@
 package com.xavier.bean.stc;
 
 import com.xavier.bean.keys.StcEntByTraceMultiKeys;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -14,6 +18,10 @@ import java.io.Serializable;
  *
  * @author NewGr8Player
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "stc_ent_by_trace")
 public class StcEntByTrace implements Serializable {
@@ -22,30 +30,6 @@ public class StcEntByTrace implements Serializable {
 	private StcEntByTraceMultiKeys stcEntByTraceMultiKeys;
 	@Column(name="ent_num")
 	private Integer entNum;
-
-	public StcEntByTrace() {
-	}
-
-	public StcEntByTrace(StcEntByTraceMultiKeys stcEntByTraceMultiKeys, Integer entNum) {
-		this.stcEntByTraceMultiKeys = stcEntByTraceMultiKeys;
-		this.entNum = entNum;
-	}
-
-	public StcEntByTraceMultiKeys getStcEntByTraceMultiKeys() {
-		return stcEntByTraceMultiKeys;
-	}
-
-	public void setStcEntByTraceMultiKeys(StcEntByTraceMultiKeys stcEntByTraceMultiKeys) {
-		this.stcEntByTraceMultiKeys = stcEntByTraceMultiKeys;
-	}
-
-	public Integer getEntNum() {
-		return entNum;
-	}
-
-	public void setEntNum(Integer entNum) {
-		this.entNum = entNum;
-	}
 
 	public void incEnt_num(Integer inc) {
 		this.entNum += inc;

@@ -1,7 +1,6 @@
 package com.xavier.work;
 
 import com.alibaba.otter.canal.protocol.CanalEntry;
-import com.xavier.bean.stc.StcEntByTrace;
 import com.xavier.service.StcEntByAreaService;
 import com.xavier.service.StcEntByDictService;
 import com.xavier.service.StcEntByTraceService;
@@ -30,14 +29,14 @@ public class TblDicLHandler extends AbstractHandler {
 	public void onInsert(List<CanalEntry.Column> afterList) {
 		this.stcEntByDictService.save(this.stcEntByDictService.stcEntByDictCollector(afterList));
 		this.stcEntByAreaService.save(this.stcEntByAreaService.stcEntByAreaCollector(afterList));
-		this.stcEntByTraceService.save(this.stcEntByTraceService.StcEntByTraceCollector(afterList));
+		this.stcEntByTraceService.save(this.stcEntByTraceService.stcEntByTraceCollector(afterList));
 	}
 
 	@Override
 	public void onUpdate(List<CanalEntry.Column> beforeList, List<CanalEntry.Column> afterList) {
 		this.stcEntByDictService.save(this.stcEntByDictService.stcEntByDictCollector(afterList));
 		this.stcEntByAreaService.save(this.stcEntByAreaService.stcEntByAreaCollector(afterList));
-		this.stcEntByTraceService.save(this.stcEntByTraceService.StcEntByTraceCollector(afterList));
+		this.stcEntByTraceService.save(this.stcEntByTraceService.stcEntByTraceCollector(afterList));
 	}
 
 	@Override

@@ -3,19 +3,17 @@ package com.xavier.service.impl;
 import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.xavier.bean.EntInfo;
 import com.xavier.common.ConstVars;
+import com.xavier.common.DateUtil;
 import com.xavier.dao.EntInfoDao;
 import com.xavier.service.DictService;
 import com.xavier.service.EntInfoService;
 import com.xavier.util.UpdateTool;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +35,6 @@ public class EntInfoServiceImpl implements EntInfoService {
 	@Override
 	public void save(EntInfo entInfo) {
 		if (null != entInfo && null != entInfo.getId()) {
-			//TODO Spring-Data-JPA 无法忽略null值进行Insert或者Update
 			Optional<EntInfo> obj = this.entInfoDao.findById(entInfo.getId());
 			EntInfo entity = new EntInfo();
 			UpdateTool.copyNonNullProperties(entInfo, entity);
@@ -48,7 +45,6 @@ public class EntInfoServiceImpl implements EntInfoService {
 		} else {
 			logger.debug("传入无效对象,不进行持久化操作!");
 		}
-
 	}
 
 	@Override
@@ -58,7 +54,6 @@ public class EntInfoServiceImpl implements EntInfoService {
 
 	@Override
 	public EntInfo entInfoCollector(List<CanalEntry.Column> list) {
-		//TODO 改为读取配置模式进行信息采集映射
 		EntInfo entInfo = new EntInfo();
 		for (CanalEntry.Column e : list) {
 			switch (e.getName()) {
@@ -104,26 +99,26 @@ public class EntInfoServiceImpl implements EntInfoService {
 					entInfo.setPromoteStatus(Integer.parseInt(e.getValue()));
 					break;
 				case "researchDate":
-					entInfo.setResearchDate(dateStrValidator(e.getValue()));
+					entInfo.setResearchDate(DateUtil.dateStrValidator(e.getValue()));
 					break;
 				case "promoteDate":
-					entInfo.setPromoteDate(dateStrValidator(e.getValue()));
+					entInfo.setPromoteDate(DateUtil.dateStrValidator(e.getValue()));
 					break;
 				case "buildDate":
-					entInfo.setBuildDate(dateStrValidator(e.getValue()));
+					entInfo.setBuildDate(DateUtil.dateStrValidator(e.getValue()));
 					break;
 				/* 以下为系统字段 */
 				case "createId":
 					entInfo.setCreateBy(e.getValue());
 					break;
 				case "createDate":
-					entInfo.setCreateDate(dateStrValidator(e.getValue()));
+					entInfo.setCreateDate(DateUtil.dateStrValidator(e.getValue()));
 					break;
 				case "operId":
 					entInfo.setUpdateBy(e.getValue());
 					break;
 				case "operDate":
-					entInfo.setUpdateDate(dateStrValidator(e.getValue()));
+					entInfo.setUpdateDate(DateUtil.dateStrValidator(e.getValue()));
 					break;
 				case "sortId":
 					entInfo.setSort(Integer.parseInt(e.getValue()));
@@ -197,26 +192,5 @@ public class EntInfoServiceImpl implements EntInfoService {
 
 		}
 		return entInfo;
-	}
-
-	/**
-	 * 日期字符串有效性验证
-	 * 有效返回转换后的Date对象
-	 * 否则返回null
-	 *
-	 * @param dateStr
-	 * @return
-	 */
-	private Date dateStrValidator(String dateStr) {
-		if (StringUtils.isNotBlank(dateStr)) {
-			try {
-				return DateUtils.parseDate(dateStr, ConstVars.PARSE_PATTERNS);
-			} catch (ParseException e) {
-				e.printStackTrace();
-				return null;
-			}
-		} else {
-			return null;
-		}
 	}
 }

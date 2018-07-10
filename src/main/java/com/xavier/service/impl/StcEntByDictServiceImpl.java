@@ -66,13 +66,13 @@ public class StcEntByDictServiceImpl implements StcEntByDictService {
 			if (!flag) {
 				switch (list.get(i).getName()) {
 					case "tblId":
-						Optional<EntInfo> entInfo = this.entInfoService.searchById(list.get(i).getValue());
-						if (entInfo.isPresent()) {
-							EntInfo entity = entInfo.get();
-							multiKeys.setProvince(entity.getProvince());
-							multiKeys.setCity(entity.getCity());
-							multiKeys.setCounty(entity.getCounty());
-							multiKeys.setEntType(entity.getEntTypeCode());
+						Optional<EntInfo> entInfoOptional = this.entInfoService.searchById(list.get(i).getValue());
+						if (entInfoOptional.isPresent()) {
+							EntInfo entInfo = entInfoOptional.get();
+							multiKeys.setProvince(entInfo.getProvince());
+							multiKeys.setCity(entInfo.getCity());
+							multiKeys.setCounty(entInfo.getCounty());
+							multiKeys.setEntType(entInfo.getEntTypeCode());
 						}
 						break;
 					case "dicTypeId":

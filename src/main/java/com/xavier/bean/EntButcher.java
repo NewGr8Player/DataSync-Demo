@@ -1,5 +1,8 @@
 package com.xavier.bean;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,6 +11,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "ent_butcher")
 public class EntButcher implements Serializable {
@@ -49,148 +54,4 @@ public class EntButcher implements Serializable {
 	private String remarks;
 	@Column(name = "del_flag")
 	private Integer delFlag;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getGrade() {
-		return grade;
-	}
-
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-
-	public BigDecimal getButcherNum() {
-		return butcherNum;
-	}
-
-	public void setButcherNum(BigDecimal butcherNum) {
-		this.butcherNum = butcherNum;
-	}
-
-	public Integer getCheckerNum() {
-		return checkerNum;
-	}
-
-	public void setCheckerNum(Integer checkerNum) {
-		this.checkerNum = checkerNum;
-	}
-
-	public Integer getArtisanNum() {
-		return artisanNum;
-	}
-
-	public void setArtisanNum(Integer artisanNum) {
-		this.artisanNum = artisanNum;
-	}
-
-	public String getCheckOther() {
-		return checkOther;
-	}
-
-	public void setCheckOther(String checkOther) {
-		this.checkOther = checkOther;
-	}
-
-	public String getButcherOther() {
-		return butcherOther;
-	}
-
-	public void setButcherOther(String butcherOther) {
-		this.butcherOther = butcherOther;
-	}
-
-	public String getHarmlessOther() {
-		return harmlessOther;
-	}
-
-	public void setHarmlessOther(String harmlessOther) {
-		this.harmlessOther = harmlessOther;
-	}
-
-	public Integer getButcherNo() {
-		return butcherNo;
-	}
-
-	public void setButcherNo(Integer butcherNo) {
-		this.butcherNo = butcherNo;
-	}
-
-	public Integer getIsRecord() {
-		return isRecord;
-	}
-
-	public void setIsRecord(Integer isRecord) {
-		this.isRecord = isRecord;
-	}
-
-	public Integer getSort() {
-		return sort;
-	}
-
-	public void setSort(Integer sort) {
-		this.sort = sort;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public String getCreateId() {
-		return createId;
-	}
-
-	public void setCreateId(String createId) {
-		this.createId = createId;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public String getUpdateBy() {
-		return updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public Date getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	public String getRemarks() {
-		return remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
-
-	public Integer getDelFlag() {
-		return delFlag;
-	}
-
-	public void setDelFlag(Integer delFlag) {
-		this.delFlag = delFlag;
-	}
 }

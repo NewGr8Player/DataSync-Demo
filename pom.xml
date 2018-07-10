@@ -32,6 +32,7 @@
         <canal-starter.version>0.0.1-REALEASE</canal-starter.version>
         <canal-client.verison>1.0.25</canal-client.verison>
         <druid.version>1.1.10</druid.version>
+        <lombok.version>1.16.20</lombok.version>
     </properties>
 
     <dependencies>
@@ -90,6 +91,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
         <!-- Junit Test -->
         <dependency>

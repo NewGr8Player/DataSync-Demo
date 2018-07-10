@@ -1,6 +1,10 @@
 package com.xavier.bean.stc;
 
 import com.xavier.bean.keys.StcEntByDictMultiKeys;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -13,6 +17,10 @@ import java.io.Serializable;
  *
  * @author NewGr8Player
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "stc_ent_by_dict")
 public class StcEntByDict implements Serializable {
@@ -23,39 +31,6 @@ public class StcEntByDict implements Serializable {
 	private String dictLabel;
 	@Column(name = "ent_num")
 	private Integer entNum;
-
-	public StcEntByDict() {
-	}
-
-	public StcEntByDict(StcEntByDictMultiKeys stcEntByDictMultiKeys, String dictLabel, Integer entNum) {
-		this.stcEntByDictMultiKeys = stcEntByDictMultiKeys;
-		this.dictLabel = dictLabel;
-		this.entNum = entNum;
-	}
-
-	public StcEntByDictMultiKeys getStcEntByDictMultiKeys() {
-		return stcEntByDictMultiKeys;
-	}
-
-	public void setStcEntByDictMultiKeys(StcEntByDictMultiKeys stcEntByDictMultiKeys) {
-		this.stcEntByDictMultiKeys = stcEntByDictMultiKeys;
-	}
-
-	public String getDictLabel() {
-		return dictLabel;
-	}
-
-	public void setDictLabel(String dictLabel) {
-		this.dictLabel = dictLabel;
-	}
-
-	public Integer getEntNum() {
-		return entNum;
-	}
-
-	public void setEntNum(Integer entNum) {
-		this.entNum = entNum;
-	}
 
 	public void incEnt_num(Integer inc) {
 		this.entNum += inc;

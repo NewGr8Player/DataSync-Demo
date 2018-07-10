@@ -25,5 +25,5 @@ public interface StcEntByTraceService {
 	 * @param list
 	 * @return
 	 */
-	StcEntByTrace StcEntByTraceCollector(List<CanalEntry.Column> list);
+	StcEntByTrace stcEntByTraceCollector(List<CanalEntry.Column> list);
 }

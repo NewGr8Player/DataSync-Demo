@@ -18,6 +18,7 @@ public class DictServiceImpl implements DictService {
 	@Autowired
 	private DictDao dictDao;
 
+	@Override
 	@Cacheable(value = "dict")
 	public Dict searchByValueWithType(String type, String value) {
 		return this.dictDao.searchByValueWithType(type, value);
