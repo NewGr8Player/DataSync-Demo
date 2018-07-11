@@ -53,5 +53,5 @@ public class EntButcher implements Serializable {
 	@Column(name = "remarks")
 	private String remarks;
 	@Column(name = "del_flag")
-	private Integer delFlag;
+	private Integer delFlag = 0;
 }
