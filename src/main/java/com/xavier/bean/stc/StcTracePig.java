@@ -36,7 +36,7 @@ public class StcTracePig implements Serializable {
 	private Integer sellFlag;
 
 	/**
-	 * <p>相比前一日屠宰量变化情况</p>
+	 * 相比前一日屠宰量变化情况
 	 * <ul>
 	 * <li> 传入参数为{@code null}或者等于前一天置{@code 0};</li>
 	 * <li> 大于前一天置{@code 1};</li>
@@ -55,9 +55,10 @@ public class StcTracePig implements Serializable {
 	}
 
 	/**
-	 * <p>相比前一日销售量变化情况</p>
+	 * 相比前一日销售量变化情况
 	 *
 	 * @param sellNum 前一天销售量
+	 * @see com.xavier.bean.stc.StcTracePig#preButcherNumCpm(Integer)
 	 * @see java.lang.Integer#compareTo(Integer)
 	 */
 	public void preSellNumCpm(Integer sellNum) {
