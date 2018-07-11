@@ -3,11 +3,9 @@ package com.xavier.listener;
 import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.xavier.starter.canal.annotation.CanalEventListener;
 import com.xavier.starter.canal.annotation.ListenPoint;
-import com.xavier.work.AddressInfoHandler;
-import com.xavier.work.EntInfoHandler;
-import com.xavier.work.MapHandler;
-import com.xavier.work.TblDicLHandler;
+import com.xavier.work.*;
 import com.xavier.work.base.AbstractHandler;
+import org.omg.CORBA.portable.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -20,12 +18,21 @@ public class AnnotationListener {
 
 	@Autowired
 	private EntInfoHandler entInfoHandler;
+
 	@Autowired
 	private MapHandler mapHandler;
+
 	@Autowired
 	private AddressInfoHandler addressInfoHandler;
+
 	@Autowired
 	private TblDicLHandler tblDicLHandler;
+
+	@Autowired
+	private RegisterInfoHandler registerInfoHandler;
+
+	@Autowired
+	private OutstockHandler outstockHandler;
 
 	@ListenPoint(destination = "example", schema = "testa", table = "d_ent_info")
 	public void entInfoListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
@@ -49,12 +56,12 @@ public class AnnotationListener {
 
 	@ListenPoint(destination = "example", schema = "testa", table = "d_register_info")
 	public void registerInfoListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
-		listenerTask(tblDicLHandler, eventType, rowData);
+		listenerTask(registerInfoHandler, eventType, rowData);
 	}
 
 	@ListenPoint(destination = "example", schema = "testa", table = "d_outstock")
 	public void outstockListener(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
-		listenerTask(tblDicLHandler, eventType, rowData);
+		listenerTask(outstockHandler, eventType, rowData);
 	}
 
 	/**

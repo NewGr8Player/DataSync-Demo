@@ -52,7 +52,7 @@ public class StcTracePigMultiKeys implements Serializable {
 	}
 
 	public void setDate(String date) {
-		this.date = DateUtil.dateToString(DateUtil.dateStrValidator(date), DateUtil.YMD_DASH_WITH_SECONED_24);
+		this.date = DateUtil.dateToString(DateUtil.dateStrValidator(date), DateUtil.YMD_DASH);
 	}
 
 	@Override

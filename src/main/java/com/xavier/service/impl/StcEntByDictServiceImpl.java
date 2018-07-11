@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +25,7 @@ import java.util.Optional;
  * @author NewGr8Player
  */
 @Service
+@Transactional(readOnly = true)
 public class StcEntByDictServiceImpl implements StcEntByDictService {
 
 	private Logger logger = LoggerFactory.getLogger(StcEntByDictService.class);
@@ -36,6 +38,7 @@ public class StcEntByDictServiceImpl implements StcEntByDictService {
 	private DictService dictService;
 
 	@Override
+	@Transactional
 	public void save(StcEntByDict stcEntByDict) {
 		if (null != stcEntByDict && null != stcEntByDict.getStcEntByDictMultiKeys()) {
 			Optional<StcEntByDict> obj = this.stcEntByDictDao.findById(stcEntByDict.getStcEntByDictMultiKeys());

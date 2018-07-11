@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +25,7 @@ import java.util.Optional;
  * @author NewGr8Player
  */
 @Service
+@Transactional(readOnly = true)
 public class StcEntByTraceServiceImpl implements StcEntByTraceService {
 
 	private Logger logger = LoggerFactory.getLogger(StcEntByTraceService.class);
@@ -36,6 +38,7 @@ public class StcEntByTraceServiceImpl implements StcEntByTraceService {
 	private EntButcherService entButcherService;
 
 	@Override
+	@Transactional
 	public void save(StcEntByTrace stcEntByTrace) {
 		if (null != stcEntByTrace && null != stcEntByTrace.getStcEntByTraceMultiKeys()) {
 			Optional<StcEntByTrace> obj = this.stcEntByTraceDao.findById(stcEntByTrace.getStcEntByTraceMultiKeys());

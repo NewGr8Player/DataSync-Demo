@@ -34,7 +34,9 @@ public class UpdateTool {
 		Set<String> noEmptyName = new HashSet<>();
 		for (PropertyDescriptor p : pds) {
 			Object value = srcBean.getPropertyValue(p.getName());
-			if (value != null) noEmptyName.add(p.getName());
+			if (null != value) {
+				noEmptyName.add(p.getName());
+			}
 		}
 		String[] result = new String[noEmptyName.size()];
 		return noEmptyName.toArray(result);

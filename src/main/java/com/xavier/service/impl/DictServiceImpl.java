@@ -6,6 +6,7 @@ import com.xavier.service.DictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 字典项Service实现
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
  * @author NewGr8Player
  */
 @Service
+@Transactional(readOnly = true)
 public class DictServiceImpl implements DictService {
 
 	@Autowired

@@ -17,6 +17,11 @@ import java.util.Date;
  */
 public class DateUtil {
 
+	public static final String[] PARSE_PATTERNS = {"yyyy-MM-dd",
+			"yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM", "yyyy/MM/dd",
+			"yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM", "yyyy.MM.dd",
+			"yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
+
 	/**
 	 * <p>Example</p>
 	 * <p>当前日期: 2018年7月10日15:04:56</p>
@@ -106,7 +111,7 @@ public class DateUtil {
 	public static Date dateStrValidator(@NotNull String dateStr) {
 		if (StringUtils.isNotBlank(dateStr)) {
 			try {
-				return DateUtils.parseDate(dateStr, ConstVars.PARSE_PATTERNS);
+				return DateUtils.parseDate(dateStr, PARSE_PATTERNS);
 			} catch (ParseException e) {
 				e.printStackTrace();
 				return null;

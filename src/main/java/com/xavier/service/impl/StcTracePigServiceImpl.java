@@ -9,16 +9,19 @@ import com.xavier.dao.StcTracePigDao;
 import com.xavier.service.EntInfoService;
 import com.xavier.service.StcTracePigService;
 import com.xavier.util.UpdateTool;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 public class StcTracePigServiceImpl implements StcTracePigService {
 
 	private Logger logger = LoggerFactory.getLogger(StcTracePigService.class);
@@ -29,6 +32,7 @@ public class StcTracePigServiceImpl implements StcTracePigService {
 	private EntInfoService entInfoService;
 
 	@Override
+	@Transactional
 	public void save(StcTracePig stcTracePig) {
 		if (null != stcTracePig && null != stcTracePig.getStcTracePigMultiKeys()) {
 			Optional<StcTracePig> obj = this.stcTracePigDao.findById(stcTracePig.getStcTracePigMultiKeys());
@@ -65,23 +69,36 @@ public class StcTracePigServiceImpl implements StcTracePigService {
 					stcTracePigMultiKeys.setDate(e.getValue());
 					break;
 				case "total":
-					stcTracePig.setButcherNum(Integer.parseInt(e.getValue()));
+					String num = e.getValue();
+					if (StringUtils.isNotBlank(num)) {/* Fixed Blank String */
+						stcTracePig.setButcherNum(Integer.parseInt(num));
+					} else {
+						stcTracePig.setButcherNum(0);
+					}
+					break;
 			}
 		}
-		Optional<StcTracePig> stcTracePigOptional = this.stcTracePigDao.findByProvinceAndCityAndCountyAndEntIdAndDate(
-				stcTracePigMultiKeys.getProvince(),
-				stcTracePigMultiKeys.getCity(),
-				stcTracePigMultiKeys.getCounty(),
-				stcTracePigMultiKeys.getEntId(),
-				DateUtil.dateToString(
-						DateUtil.offDate(DateUtil.stringToLocalDate(stcTracePigMultiKeys.getDate(),DateUtil.YMD_DASH_WITH_SECONED_24),-1,ChronoUnit.DAYS),
-						DateUtil.YMD_DASH
-				) + "%"
-
-		);
-		if (stcTracePigOptional.isPresent()) {
-			stcTracePig.preButcherNumCpm(stcTracePigOptional.get().getButcherNum());/* 与上一天比较 */
+		try {
+			Optional<StcTracePig> stcTracePigOptional = this.stcTracePigDao.findById(
+					new StcTracePigMultiKeys(
+							stcTracePigMultiKeys.getProvince(),
+							stcTracePigMultiKeys.getCity(),
+							stcTracePigMultiKeys.getCounty(),
+							stcTracePigMultiKeys.getEntId(),
+							DateUtil.dateToString(
+									DateUtil.offDate(DateUtil.stringToLocalDate(stcTracePigMultiKeys.getDate(), DateUtil.YMD_DASH), -1, ChronoUnit.DAYS),
+									DateUtil.YMD_DASH
+							)
+					)
+			);
+			if (stcTracePigOptional.isPresent()) {
+				stcTracePig.preButcherNumCpm(stcTracePigOptional.get().getButcherNum());/* 与上一天比较 */
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+
 		stcTracePig.setStcTracePigMultiKeys(stcTracePigMultiKeys);
 		return stcTracePig;
 	}
@@ -138,18 +155,26 @@ public class StcTracePigServiceImpl implements StcTracePigService {
 					stcTracePigMultiKeys.setDate(e.getValue());
 					break;
 				case "goodsNum":
-					stcTracePig.setSellNum(Integer.parseInt(e.getValue()));
+					String num = e.getValue();
+					if (StringUtils.isNotBlank(num)) {/* Fixed Blank String */
+						stcTracePig.setSellNum(Integer.parseInt(num));
+					} else {
+						stcTracePig.setSellNum(0);
+					}
+					break;
 			}
 		}
-		Optional<StcTracePig> stcTracePigOptional = this.stcTracePigDao.findByProvinceAndCityAndCountyAndEntIdAndDate(
-				stcTracePigMultiKeys.getProvince(),
-				stcTracePigMultiKeys.getCity(),
-				stcTracePigMultiKeys.getCounty(),
-				stcTracePigMultiKeys.getEntId(),
-				DateUtil.dateToString(
-						DateUtil.offDate(DateUtil.stringToLocalDate(stcTracePigMultiKeys.getDate(),DateUtil.YMD_DASH_WITH_SECONED_24),-1,ChronoUnit.DAYS),
-						DateUtil.YMD_DASH
-				) + "%"
+		Optional<StcTracePig> stcTracePigOptional = this.stcTracePigDao.findById(
+				new StcTracePigMultiKeys(
+						stcTracePigMultiKeys.getProvince(),
+						stcTracePigMultiKeys.getCity(),
+						stcTracePigMultiKeys.getCounty(),
+						stcTracePigMultiKeys.getEntId(),
+						DateUtil.dateToString(
+								DateUtil.offDate(DateUtil.stringToLocalDate(stcTracePigMultiKeys.getDate(), DateUtil.YMD_DASH), -1, ChronoUnit.DAYS),
+								DateUtil.YMD_DASH
+						)
+				)
 		);
 		if (stcTracePigOptional.isPresent()) {
 			stcTracePig.preSellNumCpm(stcTracePigOptional.get().getSellNum());/* 与上一天比较 */

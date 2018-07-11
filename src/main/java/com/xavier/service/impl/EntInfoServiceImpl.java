@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,7 @@ import java.util.Optional;
  * @author NewGr8Player
  */
 @Service
+@Transactional(readOnly = true)
 public class EntInfoServiceImpl implements EntInfoService {
 
 	private Logger logger = LoggerFactory.getLogger(EntInfoService.class);
@@ -33,6 +35,7 @@ public class EntInfoServiceImpl implements EntInfoService {
 	private DictService dictService;
 
 	@Override
+	@Transactional
 	public void save(EntInfo entInfo) {
 		if (null != entInfo && null != entInfo.getId()) {
 			Optional<EntInfo> obj = this.entInfoDao.findById(entInfo.getId());

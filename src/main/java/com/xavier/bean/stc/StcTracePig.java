@@ -23,17 +23,17 @@ public class StcTracePig implements Serializable {
 	@EmbeddedId
 	private StcTracePigMultiKeys stcTracePigMultiKeys;
 
-	@Column(name = "ent_num")
+	@Column(name = "butcher_num")
 	private Integer butcherNum;
 
 	@Column(name = "butcher_flag")
-	private Integer butcherFlag = 0;
+	private Integer butcherFlag;
 
 	@Column(name = "sell_num")
 	private Integer sellNum;
 
 	@Column(name = "sell_flag")
-	private Integer sellFlag = 0;
+	private Integer sellFlag;
 
 	/**
 	 * <p>相比前一日屠宰量变化情况</p>
@@ -50,7 +50,7 @@ public class StcTracePig implements Serializable {
 		if (null == butcherNum) {/* 前一天为空 */
 			this.butcherFlag = 0;
 		} else {/* 与前一天比较 */
-			this.butcherFlag = butcherNum.compareTo(this.butcherNum);
+			this.butcherFlag = this.butcherNum.compareTo(butcherNum);
 		}
 	}
 
@@ -62,9 +62,9 @@ public class StcTracePig implements Serializable {
 	 */
 	public void preSellNumCpm(Integer sellNum) {
 		if (null == sellNum) {/* 前一天为空 */
-			this.sellNum = 0;
+			this.sellFlag = 0;
 		} else {/* 与前一天比较 */
-			this.sellNum = sellNum.compareTo(this.sellNum);
+			this.sellFlag = this.sellNum.compareTo(sellNum);
 		}
 	}
 
